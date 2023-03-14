@@ -1,0 +1,60 @@
+---
+layout: default
+permalink: /sample.html
+title: sample
+fruit: apple
+---
+
+h1 Variety of samples
+
+h2 link_to
+p
+  = link_to "_posts/2023-03-12-welcome-to-bridgetown.md", "_posts/2023-03-12-welcome-to-bridgetown.md"
+
+p
+  - url = url_for("_posts/2023-03-12-welcome-to-bridgetown.md")
+  = link_to "_posts/2023-03-12-welcome-to-bridgetown.md", url
+
+h2 site.data
+p
+  = site.data.members[0].name
+p
+  - site.data.members.each do |member|
+    = member.name
+    br
+    = member.github
+
+h2 page.data
+p
+  = page.data.fruit
+  br
+  = resource.data.fruit
+
+h2 site.metadata
+p
+  = "#{site.metadata.title}: #{site.metadata.tagline}"
+
+h2 markdown
+ruby:
+  str =<<~EOM
+   ### I'm a header h3!
+   #### I'm a header h4!!
+  EOM
+
+= markdownify(str)
+
+- str = "### Hello markdown"
+= markdownify(str)
+
+markdown:
+  Tag with **inline** markdown!
+  Second Line!
+
+  * list1
+  * list2
+
+h2 uppercase
+= uppercase_string "i'm a string"
+
+h2 cool_tag
+= cool_tag

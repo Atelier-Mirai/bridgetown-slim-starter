@@ -1,0 +1,21 @@
+meta charset="utf-8"
+meta name="viewport" content="width=device-width"
+
+/ 以下の三つはどれも同じ
+/ - page_title = page.data.title
+/ - page_title = page.data[:title]
+/ - page_title = resource.data.title
+
+- page_title = page.data.title
+title
+  - if page_title == "Index"
+    = "#{site.metadata.title}: #{site.metadata.tagline}"
+  - else
+    = "#{page_title} | #{site.metadata.title}"
+
+meta name="description" content="#{site.metadata.description}"
+
+link rel="stylesheet" href="#{webpack_path(:css)}"
+script src="#{webpack_path(:js)}" defer="defer"
+
+= live_reload_dev_js
